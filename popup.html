@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Filler with GROQ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 350px;
+      padding: 15px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    input, textarea {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #3367d6;
+    }
+    .hidden {
+      display: none;
+    }
+    .tabs {
+      display: flex;
+      margin-bottom: 15px;
+    }
+    .tab {
+      padding: 8px 15px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+    .tab.active {
+      background-color: #4285f4;
+      color: white;
+      border-color: #4285f4;
+    }
+    #status {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    #inject-button {
+      background-color: #34a853;
+    }
+    #inject-button:hover {
+      background-color: #2d8e47;
+    }
+  </style>
+</head>
+<body>
+  <h2>Form Filler with GROQ</h2>
+  
+  <div class="tabs">
+    <div class="tab active" id="settings-tab">Settings</div>
+    <div class="tab" id="profile-tab">Profile Data</div>
+  </div>
+
+  <div id="settings-panel" class="container">
+    <div class="form-group">
+      <label for="groq-api-key">GROQ API Key</label>
+      <input type="password" id="groq-api-key" placeholder="Enter your GROQ API key">
+    </div>
+    
+    <div class="form-group">
+      <label for="mongodb-uri">MongoDB Connection URI</label>
+      <input type="password" id="mongodb-uri" placeholder="Enter MongoDB connection URI">
+    </div>
+    
+    <button id="save-settings">Save Settings</button>
+    
+    <div id="status" class="hidden"></div>
+  </div>
+
+  <div id="profile-panel" class="container hidden">
+    <div class="form-group">
+      <label for="full-name">Full Name</label>
+      <input type="text" id="full-name" placeholder="Enter your full name">
+    </div>
+    
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email">
+    </div>
+    
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number">
+    </div>
+    
+    <div class="form-group">
+      <label for="address">Address</label>
+      <textarea id="address" placeholder="Enter your address" rows="3"></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="professional-background">Professional Background</label>
+      <textarea id="professional-background" placeholder="Enter your professional background" rows="3"></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="skills">Skills (comma separated)</label>
+      <input type="text" id="skills" placeholder="Enter your skills">
+    </div>
+    
+    <button id="save-profile">Save Profile</button>
+    <button id="inject-button">Inject Data into Form</button>
+    
+    <div id="profile-status" class="hidden"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
